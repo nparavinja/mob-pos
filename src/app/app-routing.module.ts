@@ -1,9 +1,27 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
+  { path: "", redirectTo: "utakmice", pathMatch: "full" },
+  
+  {
+    path: "utakmice",
+    loadChildren: () =>
+      import("./utakmice/utakmice.module").then(m => m.UtakmicePageModule)
+  },
+  {
+    path: "livescore",
+    loadChildren: () =>
+      import("./livescore/livescore.module").then(m => m.LivescorePageModule)
+  },
+  {
+    path: 'moj-profil',
+    loadChildren: () => import('./moj-profil/moj-profil.module').then( m => m.MojProfilPageModule)
+  },
+  {
+    path: 'moj-tiket',
+    loadChildren: () => import('./moj-tiket/moj-tiket.module').then( m => m.MojTiketPageModule)
+  }
 ];
 
 @NgModule({
@@ -12,4 +30,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

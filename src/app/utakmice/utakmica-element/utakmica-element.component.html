@@ -1,0 +1,50 @@
+<ion-card>
+  
+  <ion-card-header>
+    {{
+      datePipe.transform(utakmica.datumIVremeOdigravanja, "HH:mm dd/MM/yyyy")
+    }}
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <ion-img
+            *ngIf="utakmica.timDomacin.slika ? true : false"
+            [src]="utakmica.timDomacin.slika"
+            alt="timDomacinSlika"
+            style="height: 50px; width: 50px;"
+          >
+          </ion-img>
+          <span>{{ utakmica.timDomacin.naziv }}</span>
+        </ion-col>
+        <ion-col size="4">
+          <ion-img
+            *ngIf="utakmica.timGost.slika ? true : false"
+            [src]="utakmica.timGost.slika"
+            alt="timGostSlika"
+            style="height: 50px; width: 50px;"
+          >
+          </ion-img>
+          <span>{{ utakmica.timGost.naziv }}</span>
+        </ion-col>
+        <ion-col size="4">
+          <ion-list lines="full">
+            <ion-item>
+              <ion-label>
+                <p>1 - 1.45</p>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <p>2 - 1.85</p>
+              </ion-label>
+            </ion-item>
+           
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

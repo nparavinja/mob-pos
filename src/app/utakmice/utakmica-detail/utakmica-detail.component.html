@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="utakmice" [text]="tekst" [icon]="ajkon">
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-align-items-center" size="6" offset="2">
+        <ion-img
+          *ngIf="utakmica.timDomacin.slika ? true : false"
+          [src]="utakmica.timDomacin.slika"
+          alt="timDomacinSlika"
+          style="height: 100px; width: 100px;"
+        >
+        </ion-img>
+      </ion-col>
+      <ion-col class="ion-align-items-center" size="6" offset="-2">
+        <ion-img
+          *ngIf="utakmica.timGost.slika ? true : false"
+          [src]="utakmica.timGost.slika"
+          alt="timGostSlika"
+          style="height: 100px; width: 100px;"
+        >
+        </ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list class="igrac-list">
+          <ion-item *ngFor="let igrac of utakmica.timDomacin.igraci">
+            <ion-label>{{ igrac }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col>
+        <ion-list class="igrac-list">
+          <ion-item *ngFor="let igrac of utakmica.timGost.igraci">
+            <ion-label>{{ igrac }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center" size="12">
+        <h4>KVOTE</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list class="kvota-list">
+          <ion-item *ngFor="let kvota of kvote">
+            <ion-label>
+              {{kvota.naziv}} - {{kvota.vrednost}}
+            </ion-label>
+            <ion-buttons>
+              <ion-button slot="end" expand="block" color="primary" fill="outline">
+                Odigraj
+              </ion-button>
+            </ion-buttons>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

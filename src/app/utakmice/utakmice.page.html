@@ -1,0 +1,9 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>utakmice</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-utakmica-element *ngFor="let utakmica of utakmice" [utakmica] = "utakmica" (click) = "izaberiUtakmicu(utakmica)"></app-utakmica-element>
+</ion-content>
