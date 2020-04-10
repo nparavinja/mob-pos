@@ -21,11 +21,20 @@ export class UtakmicePage implements OnInit {
 
   ngOnInit() {
     console.log("utakmica-page : ngOnInit");
-    this.utakmice = this.utakmiceServis.vratiUtakmice();
+    this.vratiUtakmice();
+    
+  }
+
+  vratiUtakmice() {
+    this.utakmiceServis.vratiUtakmice().subscribe( utakmice => {
+      console.log(utakmice);
+      this.utakmice = utakmice;
+    });
   }
 
   izaberiUtakmicu(utakmica: Utakmica) {
     console.log("Izabrao utakmicu: " + utakmica.id);
     this.router.navigate(["utakmice", utakmica.id]);
   }
+
 }

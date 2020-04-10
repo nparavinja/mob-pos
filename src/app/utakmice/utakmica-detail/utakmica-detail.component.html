@@ -11,9 +11,15 @@
   <ion-grid>
     <ion-row>
       <ion-col class="ion-align-items-center" size="6" offset="2">
+        <!-- safe navigation operator ? 
+        https://stackoverflow.com/questions/41242793/angular2-error-typeerror-cannot-read-property-of-undefined
+        utakmica je nedefinisana u momentu kad se templejt renderuje. Http poziv se jos nije zavrsio, sno se koristi da se zastiti 
+        property 
+        https://angular.io/guide/template-syntax#safe-navigation-operator
+        -->
         <ion-img
-          *ngIf="utakmica.timDomacin.slika ? true : false"
-          [src]="utakmica.timDomacin.slika"
+          *ngIf="utakmica?.timDomacin.logo ? true : false"
+          [src]="utakmica?.timDomacin?.logo"
           alt="timDomacinSlika"
           style="height: 100px; width: 100px;"
         >
@@ -21,8 +27,8 @@
       </ion-col>
       <ion-col class="ion-align-items-center" size="6" offset="-2">
         <ion-img
-          *ngIf="utakmica.timGost.slika ? true : false"
-          [src]="utakmica.timGost.slika"
+          *ngIf="utakmica?.timGost.logo ? true : false"
+          [src]="utakmica?.timGost.logo"
           alt="timGostSlika"
           style="height: 100px; width: 100px;"
         >
@@ -30,17 +36,29 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <ion-list class="igrac-list">
-          <ion-item *ngFor="let igrac of utakmica.timDomacin.igraci">
-            <ion-label>{{ igrac }}</ion-label>
+      <ion-col size="6">
+        <ion-list class="igrac-list ion-align-items-center" lines="none">
+          <ion-item *ngFor="let igrac of utakmica?.timDomacin.players">
+            <ion-img
+              [src]="igrac.slika"
+              alt="igracSlika"
+              style="height: 75px; width: 75px;"
+              slot="end"
+            >
+            </ion-img>
           </ion-item>
         </ion-list>
       </ion-col>
-      <ion-col>
-        <ion-list class="igrac-list">
-          <ion-item *ngFor="let igrac of utakmica.timGost.igraci">
-            <ion-label>{{ igrac }}</ion-label>
+      <ion-col size="6">
+        <ion-list class="igrac-list ion-align-items-center" lines="none">
+          <ion-item *ngFor="let igrac of utakmica?.timGost.players">
+            <ion-img
+              [src]="igrac.slika"
+              alt="igracSlika"
+              style="height: 75px; width: 75px;"
+              slot="start"
+            >
+            </ion-img>
           </ion-item>
         </ion-list>
       </ion-col>
@@ -54,11 +72,14 @@
       <ion-col>
         <ion-list class="kvota-list">
           <ion-item *ngFor="let kvota of kvote">
-            <ion-label>
-              {{kvota.naziv}} - {{kvota.vrednost}}
-            </ion-label>
+            <ion-label> {{ kvota.naziv }} - {{ kvota.vrednost }} </ion-label>
             <ion-buttons>
-              <ion-button slot="end" expand="block" color="primary" fill="outline">
+              <ion-button
+                slot="end"
+                expand="block"
+                color="primary"
+                fill="outline"
+              >
                 Odigraj
               </ion-button>
             </ion-buttons>

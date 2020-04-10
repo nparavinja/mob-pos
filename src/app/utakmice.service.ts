@@ -1,16 +1,35 @@
 import { Injectable } from "@angular/core";
 import { Utakmica } from "./utakmica.model";
+import { HttpClient } from "@angular/common/http";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
 })
 export class UtakmiceService {
   utakmice: Utakmica[] = [];
-  
-  
+  servis: string = "http://localhost/test-laravel/public/utakmice";
 
-  constructor() {
-    let u1 = new Utakmica();
+  ngOnInit() {
+    
+  }
+
+  constructor(private http: HttpClient) {}
+
+
+  vratiUtakmice() {
+    return this.http.get<Utakmica[]>(this.servis);
+  }
+
+  vratiUtakmicu(id: number) {
+    
+    return this.http.get<Utakmica>(this.servis+"/"+ id);
+  }
+
+  
+}
+/*
+let u1 = new Utakmica();
     u1.id = 1;
     u1.datumIVremeOdigravanja = new Date("07/04/2020");
     u1.uToku = false;
@@ -103,21 +122,6 @@ export class UtakmiceService {
     };
 
     this.utakmice.push(u4);
-  }
 
-  vratiUtakmicu(id: number) {
-    // console.log(this.utakmice);
-    let u : Utakmica;
-    for (let i = 0; i < this.utakmice.length; i++) {
-      if (this.utakmice[i].id === id) {
-        u = this.utakmice[i];
-        break;
-      }
-    }
-   return u;
-  }
 
-  vratiUtakmice() {
-    return this.utakmice;
-  }
-}
+*/

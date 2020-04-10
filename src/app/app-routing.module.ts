@@ -10,11 +10,6 @@ const routes: Routes = [
       import("./utakmice/utakmice.module").then(m => m.UtakmicePageModule)
   },
   {
-    path: "livescore",
-    loadChildren: () =>
-      import("./livescore/livescore.module").then(m => m.LivescorePageModule)
-  },
-  {
     path: 'moj-profil',
     loadChildren: () => import('./moj-profil/moj-profil.module').then( m => m.MojProfilPageModule)
   },
