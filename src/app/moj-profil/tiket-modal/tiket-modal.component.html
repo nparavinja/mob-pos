@@ -1,0 +1,43 @@
+<ion-content>
+  <ion-buttons>
+    <ion-button (click)="izadji()" slot="start">Izadji</ion-button>
+  </ion-buttons>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            {{
+              datePipe.transform(
+                tiket.datumIVremeOdigravanja,
+                "HH:mm dd/MM/yyyy"
+              )
+            }}
+          </ion-card-header>
+          <ion-card-content>
+            <p>Ukupna kvota: {{ tiket.ukupnaKvota }}</p>
+            <p>Uplata: {{ tiket.uplacenIznos }}</p>
+            <p>Ukupan dobitak: {{ tiket.ukupanDobitak }}</p>
+            <p>Status: {{ tiket.status }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let par of tiket.parovi; index as i">
+      <ion-col size="12">
+        <ion-list class="tiket-list ion-align-items-center">
+          <ion-item class="ion-text-center">
+            <ion-label>
+              {{ par.kvota.nazivKvote }} -- {{ par.kvota.vrednostKvote }}<br />
+              {{ par.utakmica.timDomacin.naziv }} --
+              {{ par.utakmica.timGost.naziv }}
+            </ion-label>
+            
+             
+           
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

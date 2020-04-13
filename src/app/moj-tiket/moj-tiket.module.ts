@@ -8,6 +8,7 @@ import { MojTiketPageRoutingModule } from './moj-tiket-routing.module';
 
 import { MojTiketPage } from './moj-tiket.page';
 
+
 @NgModule({
   imports: [
     CommonModule,

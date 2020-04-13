@@ -1,0 +1,16 @@
+<ion-card>
+  
+  <ion-card-header>
+    {{redniBroj}}
+  </ion-card-header>
+  <ion-card-content (click) = "prikaziModal()">
+   <p>{{datePipe.transform(tiket.datumIVremeOdigravanja, "HH:mm dd/MM/yyyy")}}</p>
+    <p> Dobitak: {{tiket.ukupanDobitak}}</p>
+    <p> Status: {{tiket.status}}</p>
+    <ion-buttons>
+      <ion-button (click) = prikaziModal() slot = "end">
+        Otvori
+      </ion-button>
+    </ion-buttons>
+  </ion-card-content>
+</ion-card>
