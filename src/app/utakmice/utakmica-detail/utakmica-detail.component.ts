@@ -4,6 +4,10 @@ import { UtakmiceService } from "src/app/utakmice.service";
 import { Route } from "@angular/compiler/src/core";
 import { ActivatedRoute } from "@angular/router";
 import { Tim } from "src/app/utakmica.model";
+import { Kvota } from 'src/app/kvota.model';
+import { ReplaySubject } from 'rxjs';
+import { Par } from 'src/app/par.model';
+import { ParService } from '../par.service';
 
 
 @Component({
@@ -16,18 +20,15 @@ export class UtakmicaDetailComponent implements OnInit {
   id: number;
   tekst = "Nazad";
   ajkon = "arrow-back";
-  kvote = [
-    { naziv: "1", vrednost: "1.45" },
-    { naziv: "2", vrednost: "1.95" },
-    { naziv: "X", vrednost: "3.45" },
-    { naziv: "D. Kecman +/-", vrednost: "1.85" },
-    { naziv: "Z. Lovernj +/-", vrednost: "1.95" },
-    { naziv: "B. Bogdanovic", vrednost: "1.85" },
-  ];
+  
+
+  
+  
 
   constructor(
     private utakmicaServis: UtakmiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private parServis: ParService
   ) {}
 
   ngOnInit() {
@@ -44,5 +45,16 @@ export class UtakmicaDetailComponent implements OnInit {
       this.utakmica = utakmica;
       console.log(this.utakmica);
     });
+  }
+
+  odigrajKvotu(kvota:Kvota) {
+    console.log("odigrao kvotu:" + kvota.nazivKvote + "  " +  kvota.vrednostKvote);
+    let p:Par = new Par(this.utakmica, kvota);
+    console.log("par:");
+    console.log(p);
+    
+    let uspeh: boolean = this.parServis.dodajPar(p);
+    console.log(uspeh);
+    
   }
 }

@@ -1,4 +1,6 @@
+import {Kvota} from './kvota.model';
 export class Utakmica {
+  
   /**
    *
    */
@@ -8,7 +10,8 @@ export class Utakmica {
     private _timDomacin: Tim,
     private _timGost: Tim,
     private _statistika: Statistika,
-    private _uToku: boolean
+    private _uToku: boolean,
+    private _kvote: Kvota[]
   ) {}
 
   get id(): number {
@@ -48,6 +51,12 @@ export class Utakmica {
 
   set statistika(value: Statistika) {
     this._statistika = value;
+  }
+  public get kvote(): Kvota[] {
+    return this._kvote;
+  }
+  public set kvote(value: Kvota[]) {
+    this._kvote = value;
   }
 
   /**

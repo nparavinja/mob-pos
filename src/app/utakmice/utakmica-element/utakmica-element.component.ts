@@ -28,5 +28,12 @@ export class UtakmicaElementComponent implements OnInit {
     
   }
 
+  vratiKecKvotu() {
+    return this.utakmica.kvote.find(k => k.nazivKvote === '1').vrednostKvote;
+  }
+  vratiDvojkuKvotu() {
+    return this.utakmica.kvote.find(k => k.nazivKvote === '2').vrednostKvote;
+  }
+
   
 }
